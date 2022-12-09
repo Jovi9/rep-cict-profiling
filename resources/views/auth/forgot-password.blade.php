@@ -1,4 +1,5 @@
 <x-guest-layout>
+    @section('doc_title', 'Forgot Password')
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">

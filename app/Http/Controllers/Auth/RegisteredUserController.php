@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
 
 class RegisteredUserController extends Controller
 {
@@ -34,16 +35,32 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'student_id' => ['required', 'string', 'max:20'],
             'name' => ['required', 'string', 'max:255'],
+            'program' => ['required', 'string', 'max:10'],
+            'year_level' => ['required', 'integer', 'max:5'],
+            'dob' => ['required', 'date'],
+            'gender' => ['required', 'string', 'max:20'],
+            'address' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $dateOfBirth = $request->dob;
+        $years = Carbon::parse($dateOfBirth)->age;
+
         $user = User::create([
+            'student_id' => $request->student_id,
             'name' => $request->name,
+            'program' => $request->program,
+            'year_level' => $request->year_level,
+            'dob' => $dateOfBirth,
+            'age' => $years,
+            'gender' => $request->gender,
+            'address' => $request->address,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
+        ])->assignRole('student');;
 
         event(new Registered($user));
 
