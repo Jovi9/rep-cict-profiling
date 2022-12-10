@@ -19,17 +19,55 @@
         </div>
     </div>
 
+    {{-- BSIT --}}
+    <input type="hidden" id="count_bsit_first" value="{{ $bsit_first }}">
+    <input type="hidden" id="count_bsit_second" value="{{ $bsit_second }}">
+    <input type="hidden" id="count_bsit_third" value="{{ $bsit_third }}">
+    <input type="hidden" id="count_bsit_fourth" value="{{ $bsit_fourth }}">
+
+    {{-- BSIS --}}
+    <input type="hidden" id="count_bsis_first" value="{{ $bsis_first }}">
+    <input type="hidden" id="count_bsis_second" value="{{ $bsis_second }}">
+    <input type="hidden" id="count_bsis_third" value="{{ $bsis_third }}">
+    <input type="hidden" id="count_bsis_fourth" value="{{ $bsis_fourth }}">
+
+    {{-- BSCS --}}
+    <input type="hidden" id="count_bscs_first" value="{{ $bscs_first }}">
+    <input type="hidden" id="count_bscs_second" value="{{ $bscs_second }}">
+    <input type="hidden" id="count_bscs_third" value="{{ $bscs_third }}">
+    <input type="hidden" id="count_bscs_fourth" value="{{ $bscs_fourth }}">
+
     <!-- Required chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Chart bar -->
     <script>
+
+        // BSIT
+        var bsit_first = document.getElementById('count_bsit_first').value;
+        var bsit_second = document.getElementById('count_bsit_second').value;
+        var bsit_third = document.getElementById('count_bsit_third').value;
+        var bsit_fourth = document.getElementById('count_bsit_fourth').value;
+
+        // BSIS
+        var bsis_first = document.getElementById('count_bsis_first').value;
+        var bsis_second = document.getElementById('count_bsis_second').value;
+        var bsis_third = document.getElementById('count_bsis_third').value;
+        var bsis_fourth = document.getElementById('count_bsis_fourth').value;
+
+        // BSCS
+        var bscs_first = document.getElementById('count_bscs_first').value;
+        var bscs_second = document.getElementById('count_bscs_second').value;
+        var bscs_third = document.getElementById('count_bscs_third').value;
+        var bscs_fourth = document.getElementById('count_bscs_fourth').value;
+
         const labelsBarChart = [
             "1st year",
             "2nd year",
             "3rd year",
             "4th year",
         ];
+
         const dataBarChart = {
             labels: labelsBarChart,
             datasets: [{
@@ -37,10 +75,10 @@
                     backgroundColor: "hsl(217, 89%, 60%)",
                     borderColor: "hsl(0, 0, 0)",
                     data: [
-                        100,
-                        70,
-                        50,
-                        80,
+                        bsit_first,
+                        bsit_second,
+                        bsit_third,
+                        bsit_fourth
                     ],
                 },
                 {
@@ -48,10 +86,10 @@
                     backgroundColor: "hsl(4, 81%, 56%)",
                     borderColor: "hsl(0, 0, 0)",
                     data: [
-                        90,
-                        60,
-                        60,
-                        90,
+                        bsis_first,
+                        bsis_second,
+                        bsis_third,
+                        bsis_fourth
                     ],
                 },
                 {
@@ -59,10 +97,10 @@
                     backgroundColor: "hsl(136, 52%, 43%)",
                     borderColor: "hsl(0, 0, 0)",
                     data: [
-                        80,
-                        50,
-                        70,
-                        100,
+                        bscs_first,
+                        bscs_second,
+                        bscs_third,
+                        bscs_fourth
                     ],
                 },
             ],
@@ -71,7 +109,11 @@
         const configBarChart = {
             type: "bar",
             data: dataBarChart,
-            options: {},
+            options: {
+                ticks:{
+                    precision:0
+                }
+            },
         };
 
         var chartBar = new Chart(

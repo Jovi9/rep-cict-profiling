@@ -35,9 +35,7 @@ Route::middleware('auth', 'verified')->group(function () {
         Route::resource('/subject_lists', \App\Http\Controllers\Admin\SubjectController::class);
         Route::resource('/profile', \App\Http\Controllers\Admin\ProfileController::class);
 
-        Route::get('/overview', function () {
-            return view('admin.overview');
-        })->name('admin.overview');
+        Route::get('/overview', [\App\Http\Controllers\Admin\OverviewController::class, 'index'])->name('admin.overview');
     });
 
     // student page
