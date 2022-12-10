@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\StudentController;
-use App\Http\Controllers\Admin\SubjectController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -33,8 +31,8 @@ Route::middleware('auth', 'verified')->group(function () {
     ], function () {
 
         // Route::get('/student_lists/q', [StudentController::class, 'search'])->name('admin.student_lists.search');
-        Route::resource('/student_lists', StudentController::class);
-        Route::resource('/subject_lists', SubjectController::class);
+        Route::resource('/student_lists', \App\Http\Controllers\Admin\StudentController::class);
+        Route::resource('/subject_lists', \App\Http\Controllers\Admin\SubjectController::class);
         Route::resource('/profile', \App\Http\Controllers\Admin\ProfileController::class);
 
         Route::get('/overview', function () {
@@ -51,9 +49,8 @@ Route::middleware('auth', 'verified')->group(function () {
 
         Route::resource('/profile', \App\Http\Controllers\Student\ProfileController::class);
 
-        Route::get('/subjects', function () {
-            return view('student.subjects');
-        })->name('subjects');
+        Route::get('/subjects', [\App\Http\Controllers\Student\SubjectController::class, 'index'])
+            ->name('subjects');
     });
 });
 

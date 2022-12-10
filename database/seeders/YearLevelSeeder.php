@@ -18,25 +18,21 @@ class YearLevelSeeder extends Seeder
     {
         YearLevel::create(
             [
-                'numeric_yl' => 1,
                 'year_level' => 'First Year'
             ]
         );
         YearLevel::create(
             [
-                'numeric_yl' => 2,
                 'year_level' => 'Second Year'
             ]
         );
         YearLevel::create(
             [
-                'numeric_yl' => 3,
                 'year_level' => 'Third Year'
             ]
         );
         YearLevel::create(
             [
-                'numeric_yl' => 4,
                 'year_level' => 'Fourth Year'
             ]
         );

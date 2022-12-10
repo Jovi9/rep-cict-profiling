@@ -7,6 +7,81 @@
         </h2>
     </x-slot>
 
+    <div class=" px-6 lg:px-28 md:px-20 pt-5 pb-10 lg:pt-10">
+        <div class="bg-white max-h-full pb-10 rounded-lg shadow-lg ">
+            <div id="toppart" class=" lg:mx-2 p-3">
+                <section>
+                    <div class=" grid lg:grid-cols-3 ">
+                        <div id="1">
+
+                            <div>
+                                <label for="">Name: {{ $user->name }}</label>
+                            </div>
+                            <div>
+                                <label for="">ID No: {{ $user->student_id }}</label>
+                            </div>
+                            <div>
+                                <label for="">Birthdate: {{ $user->dob }}</label>
+                                <label for="">Age: {{ $user->age }}</label>
+                            </div>
+                        </div>
+                        <div id="2">
+                            @php
+                                $program = '';
+                                if ($user->program === 'BSIT') {
+                                    $program = 'BS in Information Technology';
+                                } elseif ($user->program === 'BSIS') {
+                                    $program = 'BS in Information System';
+                                } elseif ($user->program === 'BSCS') {
+                                    $program = 'BS in Computer Science';
+                                }
+                            @endphp
+                            <div>
+                                <label for="">Program: {{ $program }}</label>
+                            </div>
+                            <div>
+                                <label for="">Year: {{ $user->year_level }}</label>
+                            </div>
+                            <div>
+                                <label for="">Address: {{ $user->address }}</label>
+                            </div>
+                        </div>
+                        {{-- <div id="3">
+                            <div>
+                                <label for="">Period: NONE</label>
+                            </div>
+                            <div>
+                                <label for="">Scholarship: NONE</label>
+                            </div>
+                        </div> --}}
+                    </div>
+                </section>
+            </div>
+            <div id="COE" class="rounded-md shadow-lg  bg-gray-300 mt-2 mx-2 overflow-auto 2xl:overflow-x-hidden">
+                <table class="table-fixed min-w-full ">
+                    <thead class=" border-t-2 border-gray-500">
+                        <th class="px-8">Subject Code</th>
+                        <th class="px-20">Subject Description</th>
+                        <th class="px-10">Lec Units</th>
+                        <th class="px-10">Lab Units</th>
+                        <th class="px-10">Total Units</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($subjects as $subject)
+                            <tr class="text-center border-t-2 border-gray-500">
+                                <td class="">{{$subject->subject_code}}</td>
+                                <td class="">{{$subject->subject_desc}}</td>
+                                <td class="">{{$subject->lec_units}}</td>
+                                <td class="">{{$subject->lab_units}}</td>
+                                <td class="">{{$subject->total_units}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {{--
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -39,7 +114,8 @@
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                                         class="inline-block w-1/3 md:hidden font-bold">User Name</span>jrios1</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                        class="inline-block w-1/3 md:hidden font-bold">Email Address</span>jrios@icloud.com</td>
+                                        class="inline-block w-1/3 md:hidden font-bold">Email
+                                        Address</span>jrios@icloud.com</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                                         class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-3X2-6233</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
@@ -55,5 +131,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </x-app-layout>

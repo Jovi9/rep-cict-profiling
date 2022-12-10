@@ -7,11 +7,15 @@
             </a>
         </x-slot>
 
+        <h2 class="mb-3 text-left text-3xl font-bold tracking-tight text-gray-900">
+            Register
+        </h2>
+
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
             {{-- student id --}}
-            <div>
+            <div class="mt-4">
                 <x-input-label for="student_id" :value="__('Student ID No.')" />
 
                 <x-text-input id="student_id" class="block mt-1 w-full" type="text" name="student_id" :value="old('student_id')"
@@ -144,16 +148,17 @@
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-primary-button class="ml-4">
+            <div class="flex items-center mt-5">
+                <x-primary-button class="w-full">
                     {{ __('Register') }}
                 </x-primary-button>
             </div>
         </form>
+        <div class="block mt-5">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                {{ __('Already registered?') }}
+            </a>
+        </div>
     </x-auth-card>
 
     <script>

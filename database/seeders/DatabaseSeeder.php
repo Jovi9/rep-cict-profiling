@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\AdminSeeder;
+use Database\Seeders\SubjectSeeder;
 use Database\Seeders\YearLevelSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             YearLevelSeeder::class,
+            SubjectSeeder::class,
             AdminSeeder::class
         ]);
     }

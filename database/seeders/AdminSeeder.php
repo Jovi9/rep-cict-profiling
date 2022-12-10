@@ -33,5 +33,22 @@ class AdminSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ])->assignRole('administrator');
+
+        $dateOfBirth = '2001-01-01';
+        $years = Carbon::parse($dateOfBirth)->age;
+        User::create([
+            'student_id' => '2019-00589',
+            'name' => 'Joshua V',
+            'program' => 'BSIT',
+            'year_level' => 4,
+            'dob' => $dateOfBirth,
+            'age' => $years,
+            'gender' => 'Male',
+            'address' => 'Virac',
+            '_status' => 'pending',
+            'email' => 'ariesj413@gmail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        ])->assignRole('student');
     }
 }

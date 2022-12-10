@@ -110,6 +110,9 @@
                 <x-responsive-nav-link :href="route('admin.student_lists.index')" :active="request()->routeIs('admin.student_lists.index')">
                     {{ __('Student Lists') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.subject_lists.index')" :active="request()->routeIs('admin.subject_lists.index')">
+                    {{ __('Subject Lists') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('admin.profile.index')" :active="request()->routeIs('admin.profile.index')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>

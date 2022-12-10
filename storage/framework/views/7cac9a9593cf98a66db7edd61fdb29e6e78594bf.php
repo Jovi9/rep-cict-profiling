@@ -55,11 +55,15 @@
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
 
+        <h2 class="mb-3 text-left text-3xl font-bold tracking-tight text-gray-900">
+            Login
+        </h2>
+
         <form method="POST" action="<?php echo e(route('login')); ?>">
             <?php echo csrf_field(); ?>
 
             <!-- Email Address -->
-            <div>
+            <div class="mt-4">
                 <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.input-label','data' => ['for' => 'email','value' => __('Email')]] + (isset($attributes) ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('input-label'); ?>
@@ -161,30 +165,33 @@
             </div>
 
             <!-- Remember Me -->
-            <div class="block mt-4">
+            <div class="flex justify-between mt-4">
                 <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                    <input id="remember_me" type="checkbox"
+                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        name="remember">
                     <span class="ml-2 text-sm text-gray-600"><?php echo e(__('Remember me')); ?></span>
                 </label>
-            </div>
 
-            <div class="flex items-center justify-end mt-4">
                 <?php if(Route::has('password.request')): ?>
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="<?php echo e(route('password.request')); ?>">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                        href="<?php echo e(route('password.request')); ?>">
                         <?php echo e(__('Forgot your password?')); ?>
 
                     </a>
                 <?php endif; ?>
+            </div>
 
+            <div class="mt-5">
                 <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.primary-button','data' => ['class' => 'ml-3']] + (isset($attributes) ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.primary-button','data' => ['class' => 'w-full']] + (isset($attributes) ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('primary-button'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
 <?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['class' => 'ml-3']); ?>
+<?php $component->withAttributes(['class' => 'w-full']); ?>
                     <?php echo e(__('Log in')); ?>
 
                  <?php echo $__env->renderComponent(); ?>
@@ -195,6 +202,10 @@
 <?php endif; ?>
             </div>
         </form>
+        <div class="block mt-5">
+            <a class="underline text-sm text-gray-500 hover:text-gray-900" href="<?php echo e(route('register')); ?>">Don't
+                have an account? Register</a>
+        </div>
      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>

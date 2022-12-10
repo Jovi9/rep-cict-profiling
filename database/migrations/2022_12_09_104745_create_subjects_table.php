@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('year_level_id')->constrained('year_levels')->cascadeOnUpdate();
-            $table->string('code')->nullable();
+            $table->string('program');
             $table->string('subject_code');
             $table->string('subject_desc');
             $table->string('lec_units');

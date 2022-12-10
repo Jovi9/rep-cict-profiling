@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('year_levels', function (Blueprint $table) {
             $table->id();
-            $table->integer('numeric_yl');
             $table->string('year_level');
             $table->timestamps();
         });
