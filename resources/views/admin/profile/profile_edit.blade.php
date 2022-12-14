@@ -1,16 +1,12 @@
 <x-app-layout>
     @section('doc_title', 'Edit Profile')
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Profile') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+    <div class="py-5">
+        <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <div>
+                <div class="p-5 bg-white border-b border-gray-200">
+                    {{-- <div>
                         <a href="{{ route('admin.profile.index') }}"
                             class="hadow-lg px-6 my-3 py-2 shadow-lg
                             bg-gray-800
@@ -20,9 +16,26 @@
                             focus:ring ring-gray-300 disabled:opacity-25 transition
                             ease-in-out duration-150">
                             Back</a>
+                    </div> --}}
+                    <div class="pt- pl-">
+                        <a href="{{ route('admin.profile.index') }}"
+                            class="shadow-lg px-6 my-3 py-2
+                                    bg-gray-800
+                                    border border-transparent rounded-md font-semibold text-xs
+                                    text-white uppercase tracking-widest hover:bg-gray-700
+                                    active:bg-gray-900 focus:outline-none focus:border-gray-900
+                                    focus:ring ring-gray-300 disabled:opacity-25 transition
+                                    ease-in-out duration-150">
+                            Back
+                        </a>
                     </div>
-                    <div>
-                        <h1 class="font-bold text-lg xl:text-3xl flex justify-center">Profile Information</h1>
+                    {{-- <div>
+                        <h1 class="font-bold text-lg xl:text-3xl flex justify-center">Edit Profile Information</h1>
+                    </div> --}}
+                    <div class="pt-5 flex justify-center">
+                        <h1 class=" font-extrabold text-lg md:text-xl lg:text:1xl xl:text-3xl flex justify-center">
+                            Edit Profile Information
+                        </h1>
                     </div>
 
                     <form method="POST" action="{{ route('admin.profile.update', ['profile' => $user->id]) }}">

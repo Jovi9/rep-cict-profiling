@@ -1,120 +1,137 @@
 <x-app-layout>
     @section('doc_title', 'Student Lists')
 
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Student Lists') }}
         </h2>
-    </x-slot>
+    </x-slot> --}}
 
-    {{-- <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+    <div class=" px-6 lg:px-28 md:px-20 pt-5 pb-5 lg:pt-5">
+        <div class="bg-white h-full pb-5 rounded-lg shadow-lg">
+            <div class=" lg:mx-2 p-3 mx-2 font-bold text-2xl py-3">
+                <h1>Manage Students</h1>
+            </div>
+            <div class="rounded-b-md shadow-lg  mt-2 md:mx-5 h-full  min-h-96">
+                <div class=" ">
+                    <table class="min-w-full sticky table-fixed border-collapse block md:table">
+                        <thead class="block md:table-header-group ">
+                            <tr
+                                class="block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                                <th class="p-2 sticky top-0 bg-gray-100 py-3 font-bold text-center block md:table-cell">
+                                    Student-ID</th>
+                                <th class="p-2 sticky top-0 bg-gray-100 py-3 font-bold text-center block md:table-cell">
+                                    Name</th>
+                                <th class="p-2 sticky top-0 bg-gray-100 py-3 font-bold text-center block md:table-cell">
+                                    Program</th>
+                                <th class="p-2 sticky top-0 bg-gray-100 py-3 font-bold text-center block md:table-cell">
+                                    Year</th>
+                                <th class="p-2 sticky top-0 bg-gray-100 py-3 font-bold text-center block md:table-cell">
+                                    Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="block md:table-row-group">
+                            @foreach ($users as $user)
+                                <tr class="border-y border-gray-500 md:border-none block md:table-row">
+                                    <td class="p-1 ml-2 md:border-y md:border-gray-500 md:text-center block md:table-cell"><span
+                                            class="inline-block w-1/3 md:hidden font-bold">
+                                            Student-ID
+                                        </span>
+                                        {{ $user->student_id }}</td>
+                                    <td class="p-1 ml-2 md:border-y md:border-gray-500 md:text-center block md:table-cell">
+                                        <span class="inline-block w-1/3 md:hidden font-bold">
+                                            Name
+                                        </span>
+                                        <span>
+                                            {{ $user->name }}
+                                        </span>
+                                    </td>
+                                    @php
+                                        $program = '';
+                                        if ($user->program === 'BSIT') {
+                                            $program = 'BS in Information Technology';
+                                        } elseif ($user->program === 'BSIS') {
+                                            $program = 'BS in Information System';
+                                        } elseif ($user->program === 'BSCS') {
+                                            $program = 'BS in Computer Science';
+                                        }
+                                    @endphp
+                                    <td class="p-1 ml-2 md:border-y md:border-gray-500 md:text-center block md:table-cell"><span
+                                            class="inline-block w-1/3 md:hidden font-bold">Program</span>{{ $program }}
+                                    </td>
+                                    <td class="p-1 ml-2 md:border-y md:border-gray-500 md:text-center block md:table-cell"><span
+                                            class="inline-block w-1/3 md:hidden font-bold">Year</span>{{ $user->year_level }}
+                                    </td>
+                                    <td class="flex p-1 ml-2 md:border-y md:border-gray-500 md:text-center  md:table-cell">
+                                        <span class="inline-block w-1/3 md:hidden font-bold">Action</span>
 
+                                        <div>
+                                            @if ($user->_status === 'pending')
+                                                <form
+                                                    action="{{ route('admin.student_lists.update', ['student_list' => $user->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="action" value="approve">
+                                                    <button type="submit"
+                                                        class="bg-yellow-300 py-1 w-48 shadow-lg rounded-lg my-1">Approve</button>
+                                                </form>
+                                                <form
+                                                    action="{{ route('admin.student_lists.update', ['student_list' => $user->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="action" value="decline">
+                                                    <button
+                                                        class="bg-red-300 py-1 w-48 shadow-lg rounded-lg my-1">Decline</button>
+                                                </form>
+                                            @elseif ($user->_status === 'declined')
+                                                <form
+                                                    action="{{ route('admin.student_lists.update', ['student_list' => $user->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="action" value="approve">
+                                                    <button type="submit"
+                                                        class="bg-green-300 py-1 w-48 shadow-lg rounded-lg my-1">Re-Approve
+                                                    </button>
+                                                </form>
+                                            @elseif ($user->_status === 'approved')
+                                                <a
+                                                    href="{{ route('admin.student_lists.show', ['student_list' => $user->id]) }}">
+                                                    <button type="submit"
+                                                        class="bg-blue-300 py-1 w-48 shadow-lg rounded-lg my-1">
+                                                        View Student Details
+                                                    </button>
+                                                </a>
+                                                <form
+                                                    action="{{ route('admin.student_lists.update', ['student_list' => $user->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="action" value="decline">
+                                                    <button
+                                                        class="bg-red-300 py-1 w-48 shadow-lg rounded-lg my-1">Decline</button>
+                                                </form>
+                                            @endif
+
+                                        </div>
+
+
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div> --}}
-
-    <div class=" mb-7    px-6 lg:px-28 md:px-20 pt-5  lg:pt-8">
-        <div class=" h-full  bg-gray-400  pb-5 rounded-lg shadow-lg ">
-            <div class=" mx-2 font-bold text-2xl py-3 lg:py-5">
-                <h1>Manage Students</h1>
-            </div>
-
-            {{-- <x-text-input id="txtsearch" class="block mt-1 w-full" type="text" name="txtsearch" autofocus
-                placeholder="Search Name or Student ID No." /> --}}
-
-            <div class="  rounded-lg shadow-lg h-96 overflow-auto bg-gray-300 mt-2 mx-2 ">
-                <table class="table-fixed  h-full min-w-full ">
-                    <thead class="">
-                        <th class="bg-gray-300 sticky top-0 lg:py-3 px-14">Student-ID</th>
-                        <th class="bg-gray-300 sticky top-0 px-20">Name</th>
-                        <th class="bg-gray-300 sticky top-0 px-20">Program</th>
-                        <th class="bg-gray-300 sticky top-0 px-">Year</th>
-                        <th class="bg-gray-300 sticky top-0 px-20">Action</th>
-                    </thead>
-                    <tbody class="" id="student_list">
-                        @foreach ($users as $user)
-                            <tr class="text-center border-t-2 border-gray-500">
-                                <td class="lg:py-3">{{ $user->student_id }}</td>
-                                <td class="">{{ $user->name }}</td>
-                                @php
-                                    $program = '';
-                                    if ($user->program === 'BSIT') {
-                                        $program = 'BS in Information Technology';
-                                    } elseif ($user->program === 'BSIS') {
-                                        $program = 'BS in Information System';
-                                    } elseif ($user->program === 'BSCS') {
-                                        $program = 'BS in Computer Science';
-                                    }
-                                @endphp
-                                <td class="">{{ $program }}</td>
-                                <td class="">{{ $user->year_level }}</td>
-                                <td class="py-1">
-                                    @if ($user->_status === 'pending')
-                                        <form
-                                            action="{{ route('admin.student_lists.update', ['student_list' => $user->id]) }}"
-                                            method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" name="action" value="approve">
-                                            <button
-                                                class="shadow-lg px-5 py-1  bg-teal-500 text-white font-semibold rounded-lg"
-                                                type="submit">
-                                                Approve
-                                            </button>
-                                        </form>
-                                        <form
-                                            action="{{ route('admin.student_lists.update', ['student_list' => $user->id]) }}"
-                                            method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" name="action" value="decline">
-                                            <button
-                                                class="shadow-lg px-5 py-1 bg-red-500 text-white font-semibold rounded-lg">
-                                                Decline
-                                            </button>
-                                        </form>
-                                    @elseif ($user->_status === 'declined')
-                                        <form
-                                            action="{{ route('admin.student_lists.update', ['student_list' => $user->id]) }}"
-                                            method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" name="action" value="approve">
-                                            <button
-                                                class="shadow-lg px-5 py-1  bg-teal-500 text-white font-semibold rounded-lg"
-                                                type="submit">
-                                                Re-Approve
-                                            </button>
-                                        </form>
-                                    @elseif ($user->_status === 'approved')
-                                        <a href="{{ route('admin.student_lists.show', ['student_list' => $user->id]) }}"
-                                            class="shadow-lg px-5 py-1  bg-teal-500 text-white font-semibold rounded-lg">
-                                            View Student Details
-                                        </a>
-                                        <form
-                                            action="{{ route('admin.student_lists.update', ['student_list' => $user->id]) }}"
-                                            method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" name="action" value="decline">
-                                            <button
-                                                class="shadow-lg px-5 py-1 bg-red-500 text-white font-semibold rounded-lg">
-                                                Decline
-                                            </button>
-                                        </form>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
+
+
+
+
+
 
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

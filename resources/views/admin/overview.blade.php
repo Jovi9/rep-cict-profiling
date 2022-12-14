@@ -1,19 +1,15 @@
 <x-app-layout>
     @section('doc_title', 'CICT Overview')
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Overview') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-12">
+
+    <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="py-2 mt-2 rounded-t text-white bg-gray-500 flex justify-center">2022-2023 CICT Students
                     </div>
-                    <canvas class="" id="chartBar"></canvas>
+                    <canvas class="max-h-96" id="chartBar"></canvas>
                 </div>
             </div>
         </div>
@@ -72,7 +68,7 @@
             labels: labelsBarChart,
             datasets: [{
                     label: "BSIT",
-                    backgroundColor: "hsl(217, 89%, 60%)",
+                    backgroundColor: "hsl(208, 89%, 60%)",
                     borderColor: "hsl(0, 0, 0)",
                     data: [
                         bsit_first,
@@ -83,7 +79,7 @@
                 },
                 {
                     label: "BSIS",
-                    backgroundColor: "hsl(4, 81%, 56%)",
+                    backgroundColor: "hsl(3, 100%, 69%)",
                     borderColor: "hsl(0, 0, 0)",
                     data: [
                         bsis_first,
@@ -94,7 +90,7 @@
                 },
                 {
                     label: "BSCS",
-                    backgroundColor: "hsl(136, 52%, 43%)",
+                    backgroundColor: "hsl(120, 60%, 66.7%)",
                     borderColor: "hsl(0, 0, 0)",
                     data: [
                         bscs_first,

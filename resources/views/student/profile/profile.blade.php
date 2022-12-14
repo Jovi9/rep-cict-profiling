@@ -1,10 +1,6 @@
 <x-app-layout>
     @section('doc_title', 'Profile Details')
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('My Profile') }}
-        </h2>
-    </x-slot>
+
 
     <div class="px-6 lg:px-28 md:px-20 sm:px-6  pt-7 pb-10 lg:pt-5">
         <div class="shadow-lg bg-white rounded-lg grid lg:grid-cols-2 ">
@@ -14,21 +10,21 @@
 
                     <div class=" flex flex-col lg:flex-col pt-5  xl:flex-row w-full">
                         <!--para sa profile pic-->
-                        <div class=" w-full">
+                        <div class=" w-full mb-5 md:mb-0">
                             <div class=" flex flex-col justify-center">
                                 <div class=" my-1 flex justify-center">
-                                    <img src="/src/" alt=""
-                                        class="shadow-lg bg-blue-800 object-contain h-36 w-36 ">
+                                    <img src="/src/profile_pic.png" alt=""
+                                        class="shadow-lg rounded-full bg-gray-200 object-contain pt-3 h-36 w-36 ">
                                 </div>
                                 <div class=" flex justify-center">
                                     <button
                                         class="shadow-lg px-6 my-3 py-2
                                         bg-gray-800
-                        border border-transparent rounded-md font-semibold text-xs
-                        text-white uppercase tracking-widest hover:bg-gray-700
-                        active:bg-gray-900 focus:outline-none focus:border-gray-900
-                        focus:ring ring-gray-300 disabled:opacity-25 transition
-                        ease-in-out duration-150">
+                                        border border-transparent rounded-md font-semibold text-xs
+                                        text-white uppercase tracking-widest hover:bg-gray-700
+                                        active:bg-gray-900 focus:outline-none focus:border-gray-900
+                                        focus:ring ring-gray-300 disabled:opacity-25 transition
+                                        ease-in-out duration-150">
                                         Upload Photo
                                     </button>
                                 </div>
@@ -75,7 +71,7 @@
                                 <div class="mt-2">
                                     <h1>Address: {{ $user->address }}</h1>
                                 </div>
-                                <div class="flex justify-center md:justify-start">
+                                <div class="flex justify-center md:justify-start mt-3">
                                     <a href="{{ route('student.profile.edit', ['profile' => $user->id]) }}"
                                         class="hadow-lg px-6 my-3 py-2 shadow-lg
                                         bg-gray-800
@@ -92,7 +88,7 @@
                 </div>
             </div>
             <!--right uni ung ID ng user-->
-            <div class=" py-5 flex flex-col items-center ">
+            <div class=" py-5 flex flex-col items-center md:mt-0 mt-5">
                 <div class="bg-white shadow-lg rounded-lg">
                     <!--upper ID-->
                     <div class="bg-gradient-to-b from-blue-400 via-white to-emerald-500 flex rounded-t-lg py-3">
@@ -110,8 +106,8 @@
                     </div>
                     <!--body ID-->
                     <div class="flex flex-col items-center">
-                        <div class="bg-blue-800 my-1">
-                            <img src="/src/" alt="" class="object-contain h-24 w-24 ">
+                        <div class=" my-1">
+                            <img src="/src/profile_pic.png" alt="" class="object-contain bg-gray-200 py-2 h-24 w-24 ">
                         </div>
                         <div>
                             <h1> <label class="text-xs">I.D NO.</label>{{ $user->student_id }}</h1>
@@ -153,5 +149,6 @@
             </div>
         </div>
     </div>
+
 
 </x-app-layout>

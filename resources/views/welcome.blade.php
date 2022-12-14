@@ -15,10 +15,6 @@
     <div class="md:mt-16 mt-10">
         <div>
             <div class="flex justify-center ">
-                {{-- <div class="hidden  justify-center ">
-                    <img src="/src/CSU_logo.png" alt="" class=" p-1 object-contain m-3 h-16 w-16 ">
-                    <img src="/src/cict-logo.png" alt="" class=" p-1 object-contain m-3 h-16 w-16 ">
-                </div> --}}
                 <div>
                     <img src="/src/CSU_logo.png" alt=""
                         class="md:flex  object-contain m-3 p-1 md:h-20 md:w-20 h-16 w-16">
@@ -65,10 +61,6 @@
                         ease-in-out duration-150">
                         Register
                     </button>
-                    {{-- <button onclick="register()"
-                        class="shadow-lg w-28 px-5 mx-5 my-5 py-2 border-2 border-gray-500 font-semibold rounded-lg">
-                        Register
-                    </button> --}}
                 </a>
 
             </div>

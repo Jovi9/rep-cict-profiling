@@ -5,9 +5,10 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <img src="/src/cict-logo.png" alt="" class="object-contain block h-12 w-auto fill-current">
+                    {{-- <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                    </a>
+                    </a> --}}
                 </div>
 
                 <!-- Navigation Links -->
